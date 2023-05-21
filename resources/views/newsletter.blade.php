@@ -22,14 +22,19 @@
                     <table class="table table-striped table-responsive{-sm|-md|-lg|-xl|-xxl}">
                         <thead>
                             <tr>
+                                <th scope="col">S/N</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Date & Time</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $serial = 1; ?>
                             @foreach ($newsletters as $newsletter)
                                 <tr>
+                                    <td>{{$serial++}}.</td>
                                     <td><a href="mailto:{{$newsletter->email}}" class="text-decoration-none text-primary">{{ $newsletter->email }}</a></td>
+                                    <td>{{ $newsletter->created_at->format('F j, Y, g:i a') }}</td>
                                     <td>
                                         <a href="{{ route('newsletter.destroy', $newsletter->id) }}" class="btn btn-outline-danger"
                                             onclick="return confirm('Are you sure you want to delete this email?')"><i class="bi bi-trash3-fill"></i> Delete

@@ -10,7 +10,8 @@ class BlogController extends Controller
     //
     public function create(){
         $categories = Category::all();
-        return view('posts.create', ['categories'=>$categories]);
+        $user = auth()->user();
+        return view('posts.create', ['categories'=>$categories, 'user' => $user]);
     }
 
     public function store(Request $request){
@@ -34,7 +35,8 @@ class BlogController extends Controller
         $blog = Blog::findOrFail($id);
         $categories = Category::all();
         // dd($blog);
-        return view('posts.edit', ['blog'=>$blog, 'categories'=>$categories]);
+        $user = auth()->user();
+        return view('posts.edit', ['blog'=>$blog, 'categories'=>$categories, 'user' => $user]);
     }
 
     public function update(Request $request, $id){

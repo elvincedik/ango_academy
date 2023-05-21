@@ -11,8 +11,20 @@ class Comment extends Model
 
     protected $guarded = ['id'];
 
+    protected $appends = ['likes_count'];
+
     public function blogs()
     {
         return $this->belongsTo(Blog::class);
     }
+
+    public function likes()
+    {
+        return $this->hasMany(CommentLike::class);
+    }
+
+    public function getLikesCountAttribute()
+{
+    return $this->likes()->count();
+}
 }

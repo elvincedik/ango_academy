@@ -17,10 +17,11 @@ class FrontController extends Controller
             $query->where('name', 'Blog');
         })
         ->orderBy('created_at', 'desc')
+        ->orderBy('updated_at', 'desc')
         ->take(3)
         ->get();
 
-        $galleries = Gallery::orderBy('created_at', 'desc')->take(3)->get();
+        $galleries = Gallery::orderBy('created_at', 'desc')->orderBy('updated_at', 'desc')->take(3)->get();
         // $blogs = Blog::all()->sortByDesc(function ($item) {
         //     return $item->updated_at ?? $item->created_at;
         // })->take(3);
@@ -43,39 +44,40 @@ class FrontController extends Controller
     }
 
     public function gallery(){
-        $galleries = Gallery::orderBy('created_at', 'desc')->take(9)->get();
+        $galleries = Gallery::orderBy('created_at', 'desc')->orderBy('updated_at', 'desc')->take(9)->get();
 
         return view('pages.gallery')->with(['galleries' => $galleries]);
     }
 
     public function newsBlog(){
+        Paginator::useBootstrap();
+
         $blogs = Blog::whereHas('category', function ($query) {
             $query->where('name', 'Blog');
         })
         ->orderBy('created_at', 'desc')
-        ->take(9)
-        ->get();
+        ->orderBy('updated_at', 'desc')
+        ->Paginate(9);
 
         $news = Blog::whereHas('category', function ($queryNews){
             $queryNews->where('name', 'News');
         })
         ->orderBy('created_at', 'desc')
+        ->orderBy('updated_at', 'desc')
         ->take(3)
         ->get();
 
-        return view('pages.newsblog')->with(['blogs' => $blogs, 'news' => $news]);
-    }
+        $comments = Comment::all();
 
+        return view('pages.newsblog')->with(['blogs' => $blogs, 'news' => $news, 'comment' => $comments]);
+    }
     public function show($id){
         $blog = Blog::findOrFail($id);
         $comments = Comment::all();
         // $comment = Comment::where('post_id', $id)->get();
         // return view('post', ['comments' => $comment]);
+        // $user = auth()->user();
         return view('posts.blog', compact('blog', 'comments'));
     }
 
-    public function fullPage(){
-        $galleries = Gallery::all();
-        return view('pages.full_image', ['galleries' => $galleries]);
-    }
 }

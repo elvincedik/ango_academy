@@ -29,7 +29,7 @@
                 </div>
 
                 <div class=" mb-3">
-                    <button class="btn btn-outline-primary w-25"><i class="bi bi-check-square-fill"></i> Upload</button>
+                    <button class="btn btn-outline-primary w-100"><i class="bi bi-check-square-fill"></i> Upload</button>
                 </div>
             </form>
         </div>

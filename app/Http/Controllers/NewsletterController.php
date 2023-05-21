@@ -11,7 +11,8 @@ class NewsletterController extends Controller
     //
     public function index(){
         $newsletters = Newsletter::orderByDesc('created_at')->get();
-        return view('newsletter', ['newsletters' => $newsletters]);
+        $user = auth()->user();
+        return view('newsletter', ['newsletters' => $newsletters, 'user' => $user]);
     }
 
     public function store(Request $request){
