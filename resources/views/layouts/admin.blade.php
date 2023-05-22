@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.104.2">
-    <title>Admin</title>
+    <title>Dashboard</title>
 
     {{-- favicons --}}
     <link rel="shortcut icon" href="{{ asset('image/logo.png') }}" type="image/x-icon">
@@ -100,23 +100,15 @@
 
 
 
-    <header class="navbar navbar-light sticky-top bg-light flex-md-nowrap p-0 shadow custom-navbar p-3">
+    <header class="navbar navbar-light sticky-top bg-light flex-md-nowrap p-0 shadow custom-navbar">
         <a class="navbar-brand ms-4 d-flex align-items-center" href="{{ route('dashboard') }}">
             <img src="{{ asset('image/logo.png') }}" alt="" class="img-fluid" height="" width="">
         </a>
-        <button class="navbar-toggler d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-
-            <h1 class="text-center">
-                Welcome
-                {{ $user->name}}
-            </h1>
-            <p class="d-flex justify-content-center"><small>
-                {{ $user->email}}
-            </small></p>
-
-
     </header>
 
 
@@ -132,12 +124,9 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block text-bg-light sidebar collapse">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-3 sidebar-sticky">
-                    <a href="{{ route('dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"> &nbsp;
-                        <img src="{{ asset('image/footer_logo.png')}}" alt="" width="30px" height="30px">&nbsp;&nbsp;
-                        <span class="fs-4">Ango Crystal</span>
-                    </a>
+                    <h5>Ango Crystal</h5>
                     <hr>
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -155,19 +144,44 @@
                                 Newsletter
                             </a>
                         </li>
+                    </ul>
+
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
+                        <span>Saved reports</span>
+                        <a class="link-secondary" href="#" aria-label="Add a new report">
+                            <span data-feather="plus-circle" class="align-text-bottom"></span>
+                        </a>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
                         <li class="nav-item">
-                            <a class="{{ Request::routeIs('gallery.create') ? 'active' : ''}} nav-link" href="{{ route('gallery.create') }}">
-                                Upload Gallery
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text" class="align-text-bottom"></span>
+                                Current month
                             </a>
                         </li>
-
-                        <li>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button class="btn btn-link" type="submit" style="text-decoration: none">Logout</button>
-                            </form>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text" class="align-text-bottom"></span>
+                                Last quarter
+                            </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text" class="align-text-bottom"></span>
+                                Social engagement
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text" class="align-text-bottom"></span>
+                                Year-end sale
+                            </a>
+                        </li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit">Logout</button>
+                        </form>
                     </ul>
                 </div>
             </nav>
@@ -185,7 +199,7 @@
 
     <!-- footer -->
     <footer class="custom-footer-styling">
-        <div class="container-fluid row p-5">
+        <div class="container-fluid row">
 
             <div class="col-lg-4 col-md-8 my-3 custom-footer-item0">
                 <a href="{{ route('home') }}"
@@ -243,7 +257,7 @@
 
         <div class="container-fluid row py-4">
             <div class="col d-flex justify-content-center custom-footer-item4">
-                <p>Copyright © Ango Crystal Academy 2023. All Right Reserved.</p>
+                <p>Copyright © 2023. All Right Reserved.</p>
             </div>
         </div>
 

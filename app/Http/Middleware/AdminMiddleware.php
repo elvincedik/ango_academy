@@ -22,11 +22,11 @@ class AdminMiddleware
 
                 return $next($request);
             } else {
-                return redirect("/")->with("admin", "you need to be authorize as an Admin to access your admin Dashboard, contact the school technical support team to be authorized");
+                return redirect("/")->with("message", "you need to be authorize as an Admin to acess your admin Dashboard, contact the school technical support team to be authorized");
             }
         } else {
 
-            return redirect("/")->with("message", "login to access dashboard");
+            return redirect("/")->with("message", "login to acess dashboard");
         }
 
         return $next($request);
